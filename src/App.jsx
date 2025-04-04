@@ -83,6 +83,17 @@ const App = () => {
   const handleRemovePlayer = (playerId) => {
     const newPlayers = players.filter((player) => player.id !== playerId);
     setPlayers(newPlayers);
+    // Update localStorage when player is removed
+    if (newPlayers.length > 0) {
+      const gameData = {
+        players: newPlayers,
+        rounds,
+      };
+      localStorage.setItem('scoreTrackerGame', JSON.stringify(gameData));
+    } else {
+      // If no players left, remove the game data
+      localStorage.removeItem('scoreTrackerGame');
+    }
   };
 
   const handleSetRounds = (value) => {
@@ -117,7 +128,13 @@ const App = () => {
   const handleDeleteHistory = (timestamp) => {
     const newHistory = gameHistory.filter(game => game.timestamp !== timestamp);
     setGameHistory(newHistory);
-    localStorage.setItem('scoreTrackerHistory', JSON.stringify(newHistory));
+    // Update localStorage when history item is deleted
+    if (newHistory.length > 0) {
+      localStorage.setItem('scoreTrackerHistory', JSON.stringify(newHistory));
+    } else {
+      // If no history left, remove the history data
+      localStorage.removeItem('scoreTrackerHistory');
+    }
   };
 
   const handleClearAllData = () => {
