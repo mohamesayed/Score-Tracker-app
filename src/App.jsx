@@ -173,21 +173,89 @@ const App = () => {
         py: 2,
         width: '100%',
         maxWidth: '100%',
-        overflowX: 'hidden'
+        overflowX: 'hidden',
+        position: 'relative',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
+          borderRadius: '30px',
+          zIndex: -1,
+        }
       }}
     >
       <Box sx={{ 
         my: 2,
         width: '100%',
         maxWidth: '100%',
-        overflowX: 'hidden'
+        overflowX: 'hidden',
+        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+        borderRadius: '30px',
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+        padding: 3,
+        border: '1px solid rgba(255, 255, 255, 0.2)',
+        transition: 'all 0.3s ease',
+        position: 'relative',
+        overflow: 'hidden',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: -50,
+          right: -50,
+          width: '100px',
+          height: '100px',
+          background: 'radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%)',
+          borderRadius: '50%',
+          zIndex: -1,
+        },
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          bottom: -50,
+          left: -50,
+          width: '100px',
+          height: '100px',
+          background: 'radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%)',
+          borderRadius: '50%',
+          zIndex: -1,
+        },
+        '&:hover': {
+          transform: 'translateY(-5px) scale(1.01)',
+          boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15)',
+          '&::before, &::after': {
+            transform: 'scale(1.2)',
+            transition: 'transform 0.5s ease',
+          }
+        }
       }}>
         <Typography 
           variant={isMobile ? "h5" : "h4"} 
           component="h1" 
           gutterBottom 
           align="center"
-          sx={{ mb: 3 }}
+          sx={{ 
+            mb: 3,
+            color: 'black',
+            fontWeight: 'bold',
+            letterSpacing: '1px',
+            textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
+            position: 'relative',
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              bottom: -5,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '50px',
+              height: '3px',
+              background: 'black',
+              borderRadius: '2px',
+            }
+          }}
         >
           Score Tracker
         </Typography>
