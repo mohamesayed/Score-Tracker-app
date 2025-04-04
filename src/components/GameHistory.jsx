@@ -10,11 +10,16 @@ import {
   TableRow,
   Paper,
   IconButton,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import HistoryIcon from '@mui/icons-material/History';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const GameHistory = ({ history, onDeleteHistory }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const formatDate = (timestamp) => {
     return new Date(timestamp).toLocaleString();
   };
@@ -30,13 +35,22 @@ const GameHistory = ({ history, onDeleteHistory }) => {
   };
 
   return (
-    <Box sx={{ mb: 3 }}>
+    <Box sx={{ mb: 3, width: '100%', overflowX: 'auto' }}>
       <Typography variant="h6" gutterBottom>
         <HistoryIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
         Game History
       </Typography>
-      <TableContainer component={Paper}>
-        <Table>
+      <TableContainer 
+        component={Paper} 
+        sx={{ 
+          maxWidth: '100%',
+          '& .MuiTableCell-root': {
+            padding: isMobile ? 1 : 2,
+            fontSize: isMobile ? '0.75rem' : '1rem',
+          }
+        }}
+      >
+        <Table size={isMobile ? "small" : "medium"}>
           <TableHead>
             <TableRow>
               <TableCell>Date</TableCell>
@@ -57,8 +71,9 @@ const GameHistory = ({ history, onDeleteHistory }) => {
                   <IconButton
                     onClick={() => onDeleteHistory(game.timestamp)}
                     color="error"
+                    size={isMobile ? "small" : "medium"}
                   >
-                    <DeleteIcon />
+                    <DeleteIcon fontSize={isMobile ? "small" : "medium"} />
                   </IconButton>
                 </TableCell>
               </TableRow>

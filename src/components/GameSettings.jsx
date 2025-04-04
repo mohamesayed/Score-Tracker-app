@@ -69,6 +69,14 @@ const GameSettings = ({ onSetRounds, onSetScoringRule, onResetScores, onSaveGame
             '& .MuiButton-root': {
               flex: isMobile ? 1 : 'auto',
               minWidth: isMobile ? 'auto' : 120,
+              fontSize: isMobile ? '0.7rem' : '0.875rem',
+              padding: isMobile ? '4px 8px' : '6px 16px',
+              '& .MuiButton-startIcon': {
+                marginRight: isMobile ? 0.25 : 0.5,
+                '& .MuiSvgIcon-root': {
+                  fontSize: isMobile ? '0.9rem' : '1.25rem'
+                }
+              }
             }
           }}
         >
@@ -79,7 +87,7 @@ const GameSettings = ({ onSetRounds, onSetScoringRule, onResetScores, onSaveGame
             startIcon={<RestartAltIcon />}
             size={isMobile ? "small" : "medium"}
           >
-            Reset Scores
+            Reset
           </Button>
           <Button
             variant="contained"
@@ -88,7 +96,7 @@ const GameSettings = ({ onSetRounds, onSetScoringRule, onResetScores, onSaveGame
             startIcon={<SaveIcon />}
             size={isMobile ? "small" : "medium"}
           >
-            Save Game
+            Save
           </Button>
           <Button
             variant="contained"
@@ -97,7 +105,7 @@ const GameSettings = ({ onSetRounds, onSetScoringRule, onResetScores, onSaveGame
             startIcon={<DeleteForeverIcon />}
             size={isMobile ? "small" : "medium"}
           >
-            Clear All
+            Clear
           </Button>
         </Stack>
       </Stack>

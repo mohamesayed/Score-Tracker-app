@@ -6,10 +6,10 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import TimerIcon from '@mui/icons-material/Timer';
 
 const Timer = () => {
-  const [time, setTime] = useState(300);
+  const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [customTime, setCustomTime] = useState('');
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(true);
 
   useEffect(() => {
     let interval;
@@ -30,12 +30,17 @@ const Timer = () => {
   };
 
   const handleStartPause = () => {
+    if (time === 0) {
+      setIsEditing(true);
+      return;
+    }
     setIsRunning(!isRunning);
   };
 
   const handleReset = () => {
-    setTime(300);
+    setTime(0);
     setIsRunning(false);
+    setIsEditing(true);
   };
 
   const handleCustomTimeChange = (e) => {
@@ -130,7 +135,7 @@ const Timer = () => {
                 startIcon={<TimerIcon />}
                 sx={{ width: { xs: '100%', sm: 'auto' } }}
               >
-                Set Duration
+                Change Time
               </Button>
             </Stack>
           </>

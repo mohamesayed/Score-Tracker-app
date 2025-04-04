@@ -153,10 +153,18 @@ const App = () => {
       maxWidth="md" 
       sx={{ 
         px: isMobile ? 1 : 3,
-        py: 2
+        py: 2,
+        width: '100%',
+        maxWidth: '100%',
+        overflowX: 'hidden'
       }}
     >
-      <Box sx={{ my: 2 }}>
+      <Box sx={{ 
+        my: 2,
+        width: '100%',
+        maxWidth: '100%',
+        overflowX: 'hidden'
+      }}>
         <Typography 
           variant={isMobile ? "h5" : "h4"} 
           component="h1" 

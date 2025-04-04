@@ -98,8 +98,22 @@ const ScoreBoard = ({ players, onUpdateScore, onRemovePlayer, scoringRule }) => 
   };
 
   return (
-    <TableContainer component={Paper} sx={{ mb: 3 }}>
-      <Table>
+    <TableContainer 
+      component={Paper} 
+      sx={{ 
+        mb: 3,
+        width: '100%',
+        overflowX: 'auto',
+        '& .MuiTableCell-root': {
+          padding: isMobile ? 1 : 2,
+          fontSize: isMobile ? '0.75rem' : '1rem',
+          '& .MuiSvgIcon-root': {
+            fontSize: isMobile ? '1rem' : '1.25rem'
+          }
+        }
+      }}
+    >
+      <Table size={isMobile ? "small" : "medium"}>
         <TableHead>
           <TableRow>
             <TableCell>Player</TableCell>
@@ -125,10 +139,10 @@ const ScoreBoard = ({ players, onUpdateScore, onRemovePlayer, scoringRule }) => 
                       style: { textAlign: 'right' },
                       inputMode: 'numeric',
                     }}
-                    sx={{ width: isMobile ? '100px' : '120px' }}
+                    sx={{ width: isMobile ? '80px' : '120px' }}
                   />
                 ) : (
-                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 1 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 0.5 }}>
                     <TextField
                       type="number"
                       value={player.score}
@@ -139,21 +153,21 @@ const ScoreBoard = ({ players, onUpdateScore, onRemovePlayer, scoringRule }) => 
                         }
                       }}
                       size="small"
-                      sx={{ width: isMobile ? 60 : 80 }}
+                      sx={{ width: isMobile ? 50 : 70 }}
                       inputProps={{ style: { textAlign: 'center' } }}
                     />
                     <Box sx={{ display: 'flex', gap: 0.5 }}>
                       <IconButton
                         size={isMobile ? "small" : "medium"}
                         onClick={() => onUpdateScore(player.id, -1)}
-                        sx={{ p: isMobile ? 0.5 : 1 }}
+                        sx={{ p: isMobile ? 0.25 : 0.5 }}
                       >
                         <RemoveIcon fontSize="small" />
                       </IconButton>
                       <IconButton
                         size={isMobile ? "small" : "medium"}
                         onClick={() => onUpdateScore(player.id, 1)}
-                        sx={{ p: isMobile ? 0.5 : 1 }}
+                        sx={{ p: isMobile ? 0.25 : 0.5 }}
                       >
                         <AddIcon fontSize="small" />
                       </IconButton>
@@ -165,15 +179,15 @@ const ScoreBoard = ({ players, onUpdateScore, onRemovePlayer, scoringRule }) => 
                 {getPlayerTag(player)}
               </TableCell>
               <TableCell align="right">
-                <Box sx={{ display: 'flex', gap: 1, justifyContent: 'flex-end' }}>
+                <Box sx={{ display: 'flex', gap: 0.5, justifyContent: 'flex-end' }}>
                   {editingPlayer === player.id ? (
                     <IconButton
                       size={isMobile ? "small" : "medium"}
                       onClick={() => handleManualScoreSubmit(player.id)}
                       color="success"
-                      sx={{ p: isMobile ? 0.5 : 1 }}
+                      sx={{ p: isMobile ? 0.25 : 0.5 }}
                     >
-                      <CheckIcon />
+                      <CheckIcon fontSize="small" />
                     </IconButton>
                   ) : (
                     <>
@@ -183,17 +197,17 @@ const ScoreBoard = ({ players, onUpdateScore, onRemovePlayer, scoringRule }) => 
                           setEditingPlayer(player.id);
                           setManualScore(player.score.toString());
                         }}
-                        sx={{ p: isMobile ? 0.5 : 1 }}
+                        sx={{ p: isMobile ? 0.25 : 0.5 }}
                       >
-                        <EditIcon />
+                        <EditIcon fontSize="small" />
                       </IconButton>
                       <IconButton
                         size={isMobile ? "small" : "medium"}
                         onClick={() => onRemovePlayer(player.id)}
                         color="error"
-                        sx={{ p: isMobile ? 0.5 : 1 }}
+                        sx={{ p: isMobile ? 0.25 : 0.5 }}
                       >
-                        <DeleteIcon />
+                        <DeleteIcon fontSize="small" />
                       </IconButton>
                     </>
                   )}
